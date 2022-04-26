@@ -103,7 +103,7 @@ urlpatterns = [
     re_path('education/delete/(?P<id>\w+)/', views.delete_education_info, name='delete_education_info'),
     # -----------------------------------------------------------------
     path('school/', views.new_school, name='new_school'),
-    # ------------------------------------------------------------------
+    # ------------------------------------------------------------------z
     path('bursary/new/', views.new_bursary_info, name='new_bursary_info'),
     path('bursary/edit/', views.edit_bursary_info, name='edit_bursary_info'),
     path('bursary/view/', views.view_bursary_info, name='view_bursary_info'),
@@ -173,5 +173,8 @@ urlpatterns = [
 
     # Dreams SerivceUptake Form
     re_path('dreamsform/new/(?P<id>\d+)/', views.new_dreamsform, name='new_dreamsform'),
+
+    # Benchmark Monitoring Form
+    path('benchmarkmonitoring', views.new_benchmarkmonitoring, name='benchmark-monitoring'),
 
 ]

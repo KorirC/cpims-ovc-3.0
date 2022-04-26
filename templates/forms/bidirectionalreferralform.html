@@ -1,0 +1,620 @@
+{% extends 'base.html' %}
+{% load app_filters %}
+{% load static %}
+{% block page_title %} Bidirectional Referral Form {% endblock %}
+{% block style_code %}
+    <link href="{% static 'plugins/parsley/src/parsley.css' %}" rel="stylesheet"/>
+    <link href="{% static 'plugins/bootstrap-datepicker/css/datepicker3.css' %}" rel="stylesheet"/>
+    <link href="{% static 'plugins/bootstrap-wizard/css/bwizard.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'plugins/bootstrap-multiselect/dist/css/bootstrap-multiselect.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/bootstrap-wizard/css/bwizard.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jquery.tagit.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-table.min.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block javascript_code %}
+{% endblock javascript_code %}
+
+{% block primary %}
+
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb pull-right">
+        <li><a href="#">Home</a></li>
+        <li class="active">Forms</li>
+    </ol>
+    <!-- end breadcrumb -->
+
+    <!-- begin page-header -->
+    {% for data in init_data %}
+        <h1 class="page-header">Forms
+            <small>Bidirection Referral <b> &nbsp;{{ data.first_name }} {{ data.surname }} |
+        </h1>
+    {% endfor %}
+
+    <!-- end page-header -->
+
+    <div id="messages" class="alert alert-danger fade in" style="display: none;" tabindex="1">
+        <span class="close" data-dismiss="alert">×</span>
+        <i class="fa fa-info fa-2x pull-left"></i>
+        <span class="invalid-form-message" id="invalid-form-message"></span>
+    </div>
+
+    <!-- begin row -->
+    <div id='case_details' class="row">
+        <!-- begin col-12 -->
+        <div class="col-md-12">
+
+            <!-- begin panel -->
+            <div style="overflow-x: auto; min-height: 300px;">
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="#" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-expand"><i
+                                    class="fa fa-minus"></i></a>
+                            <a href="#" class="btn btn-xs btn-icon btn-circle btn-default"
+                               data-click="panel-collapse"><i
+                                    class="fa fa-times"></i></a>
+                        </div>
+
+                        <h4 class="panel-title"> Bidirectional Referral Form </h4>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>Referring organization (LIP):</td>
+                                    <td>Case Manager:</td>
+                                </tr>
+                                <tr>
+                                    <td>Case Manager phone number:</td>
+                                    <td>Case Worker:</td>
+                                </tr>
+                                <tr>
+                                    <td>Case Worker phone number:</td>
+                                    <td>Organization referred to:</td>
+                                </tr>
+                                <tr>
+                                    <td>Name of Person Being Referred:</td>
+                                    <td>Age:____Years</td>
+                                </tr>
+                                <tr>
+                                    <td>Sex</td>
+                                    <td>Address</td>
+                                </tr>
+                                <tr>
+                                    <td>CPIMS ID:</td>
+                                </tr>
+                            </table>
+                             <h4> How urgent is this referral?</h4>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <form class="form-horizontal form-bordered" action="." method="POST"
+                              data-parsley-validate="true"
+                              name="form-wizard-hhva" id="new_hhva">
+                            {% csrf_token %}
+                            <div id="wizard-dreamsform">
+                                <ol>
+
+                                    <li>
+                                        Healthy Domain
+                                        <small></small>
+                                    </li>
+
+                                    <li>
+                                        Stable Domain
+                                        <small></small>
+                                    </li>
+                                    <li>
+                                        Safe Domain
+                                        <small></small>
+                                    </li>
+                                    <li>
+                                        schooled Domain
+                                        <small></small>
+                                    </li>
+
+                                </ol>
+
+                                <!-- begin wizard step-1 -->
+                                <div class="wizard-step-1">
+                                    <div class="form-group">
+
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Health Domain</th>
+                                                <th scope="col">Choose Option</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+
+                                                <td>Health insurance cover</td>
+                                                <td>
+                                                    {{ form.REFERRAL_001 }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Insecticide Treated Mosquito net (ITN)</td>
+                                                <td>
+                                                    {{ form.REFERRAL_001 }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>HIV-related testing (Tick appropriately)-K</td>
+                                                <td>
+                                                    {{ form.REFERRAL_001 }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Enrollment to care and treatment II</td>
+
+                                                <td>
+                                                    {{ form.REFERRAL_001 }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Enhance Adherence Counselling</td>
+
+                                                <td>
+                                                    {{ form.REFERRAL_001 }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Routine/ emergency healthcare</td>
+
+                                                <td>
+                                                    {{ form.REFERRAL_001 }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>Perinatal care including PMTCT</td>
+                                                <td>
+                                                    {{ form.REFERRAL_001 }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>HIV prevention support services( VMMC___ PrEP___ FP___,Condom___)
+                                                </td>
+                                                <td>
+                                                    {{ form.REFERRAL_001 }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>STI treatment)</td>
+
+                                                <td>
+                                                    {{ form.REFERRAL_001 }}
+                                                </td>
+                                            </tr>
+
+                                            <td>MUAC and Bipedal Oedema Assessment</td>
+
+                                            <td>
+                                                {{ form.REFERRAL_001 }}
+                                            </td>
+                                            </tr>
+
+                                            <td>Nutrition support</td>
+
+                                            <td>
+                                                {{ form.REFERRAL_001 }}
+                                            </td>
+                                            </tr>
+
+                                            </tr>
+
+                                            <td>Nutrition support</td>
+
+                                            <td>
+                                                {{ form.REFERRAL_001 }}
+                                            </td>
+                                            </tr>
+                                            </tbody>
+
+                                        </table>
+                                        <h6>Case manager/ Case worker signature</h6>
+                                        <p>&nbsp;</p>
+
+                                    </div>
+
+
+                                </div>
+                                <!-- end wizard step-1 -->
+
+                                <!-- begin wizard step-1 -->
+                                <div class="wizard-step-2">
+                                    <div class="form-group">
+
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Health Domain</th>
+                                                <th scope="col">Choose Option</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+
+                                                <td>Health insurance cover</td>
+                                                <td>
+                                                    {{ form.DREAMS_001_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Insecticide Treated Mosquito net (ITN)</td>
+                                                <td>
+                                                    {{ form.DREAMS_002_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>HIV-related testing (Tick appropriately)-K</td>
+                                                <td>
+                                                    {{ form.DREAMS_003_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Enrollment to care and treatment II</td>
+
+                                                <td>
+                                                    {{ form.DREAMS_004_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Enhance Adherence Counselling</td>
+
+                                                <td>
+                                                    {{ form.DREAMS_005_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Routine/ emergency healthcare</td>
+
+                                                <td>
+                                                    {{ form.DREAMS_006_DATE }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>Perinatal care including PMTCT</td>
+                                                <td>
+                                                    {{ form.DREAMS_006_DATE }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>HIV prevention support services( VMMC___ PrEP___ FP___,Condom___)
+                                                </td>
+                                                <td>
+                                                    {{ form.DREAMS_006_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>STI treatment)</td>
+
+                                                <td>
+                                                    {{ form.DREAMS_007_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <td>MUAC and Bipedal Oedema Assessment</td>
+
+                                            <td>
+                                                {{ form.DREAMS_007_DATE }}
+                                            </td>
+                                            </tr>
+
+                                            <td>Nutrition support</td>
+
+                                            <td>
+                                                {{ form.DREAMS_007_DATE }}
+                                            </td>
+                                            </tr>
+
+                                            </tr>
+
+                                            <td>Nutrition support</td>
+
+                                            <td>
+                                                {{ form.DREAMS_007_DATE }}
+                                            </td>
+                                            </tr>
+                                            </tbody>
+
+                                        </table>
+                                        <h6>Case manager/ Case worker signature</h6>
+                                        <p>&nbsp;</p>
+
+                                    </div>
+
+
+                                </div>
+                                <!-- begin wizard step-1 -->
+                                <div class="wizard-step-3">
+                                    <div class="form-group">
+
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Cash transfer OVC___, Elderly___ ,Disability___</th>
+                                                <th scope="col">choose Option</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+
+                                                <td>Safe shelter repair or construction</td>
+                                                <td>
+                                                    {{ form.DREAMS_001_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Business Support (startup kit/business boost)</td>
+                                                <td>
+                                                    {{ form.DREAMS_002_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Productive assets</td>
+                                                <td>
+                                                    {{ form.DREAMS_003_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Financial literacy training to CG and adolescent</td>
+
+                                                <td>
+                                                    {{ form.DREAMS_004_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Entrepreneurship training</td>
+
+                                                <td>
+                                                    {{ form.DREAMS_005_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Agribusiness skills training</td>
+
+                                                <td>
+                                                    {{ form.DREAMS_006_DATE }}
+                                                </td>
+                                            </tr>
+
+
+                                            <td>Nutrition support</td>
+
+                                            <td>
+                                                {{ form.DREAMS_007_DATE }}
+                                            </td>
+                                            </tr>
+
+                                            </tr>
+
+                                            <td>Nutrition support</td>
+
+                                            <td>
+                                                {{ form.DREAMS_007_DATE }}
+                                            </td>
+                                            </tr>
+                                            </tbody>
+
+                                        </table>
+                                        <h6>Case manager/ Case worker signature</h6>
+                                        <p>&nbsp;</p>
+
+                                    </div>
+
+
+                                </div>
+                                <!-- begin wizard step-2 -->
+
+
+                                <!-- end wizard step-2 -->
+
+                                <!-- start wizard step-3 -->
+
+                                <div class="wizard-step-4">
+                                    <div class="form-group">
+
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Stable Domain</th>
+                                                <th scope="col">Choose Option</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+
+                                                <td>Cash transfer OVC___, Elderly___ ,Disability___</td>
+                                                <td>
+                                                    {{ form.DREAMS_001_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Safe shelter repair or construction</td>
+                                                <td>
+                                                    {{ form.DREAMS_002_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Financial literacy training to CG and adolescent/td>
+                                                <td>
+                                                    {{ form.DREAMS_003_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>Entrepreneurship training</td>
+
+                                                <td>
+                                                    {{ form.DREAMS_004_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Agribusiness skills training</td>
+                                                <td>
+                                                    {{ form.DREAMS_005_DATE }}
+                                                </td>
+                                            </tr>
+
+                                            </tr>
+                                            </tbody>
+
+                                        </table>
+                                        <h6>Case manager/ Case worker signature</h6>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                    <!-- end wizard step-3 -->
+
+                                    <!-- start wizard step-4 -->
+
+                                    <!-- end wizard step-4 -->
+
+                                    <div class="panel-body panel-form">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4 col-sm-4"></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <button id="mysubmit-hivscreeningtool" type="submit"
+                                                        class="btn btn-primary">Submit
+                                                </button>
+                                                <a href="javascript:history.go(-1)" class="btn btn-white">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="badge pull-right m-4">Revised: 4th July 2019</div>
+            </div>
+            <!-- end panel -->
+
+        </div>
+        <!-- end col-2 -->
+
+    </div>
+    <!-- end row -->
+
+{% endblock %}
+
+{% block lazy_javascript_code %}
+    <script src="{% static 'plugins/parsley/dist/parsley.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap-wizard/js/bwizard.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap-multiselect/dist/js/bootstrap-multiselect.js' %}"></script>
+    <script src="{% static 'js/apps.js' %}"></script>
+    <script src="{% static 'js/form-wizards.js' %}"></script>
+    <script src="{% static 'js/tag-it.js' %}"></script>
+    <script src="{% static 'js/bootstrap-table.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-table-locale-all.min.js' %}"></script>
+
+    <script>
+        $(function () {
+
+            $('#DREAMS_001_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_002_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_003_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_004_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_005_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_006_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_007_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_010_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_012_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_014_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_017_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_019_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_021_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_022_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_023_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_024_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_025_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_026_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_027_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_028_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_029_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_030_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_031_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_032_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_033_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_034_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_035_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_036_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_037_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_038_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_039_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_040_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_041_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_042_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_043_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_044_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_045_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_046_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_047_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_048_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_049_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_050_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_051_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_052_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_053_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_054_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_055_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_056_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_057_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_058_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_059_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+            $('#DREAMS_060_DATE').datepicker({format: 'yyyy-mm-dd'}).val();
+
+            $(document).ready(function () {
+                $("#wizard-dreamsform").bwizard();
+            });
+
+        });
+    </script>
+
+{% endblock %}

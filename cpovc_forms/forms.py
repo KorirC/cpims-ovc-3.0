@@ -8146,3 +8146,13 @@ class DREAMS_FORM(forms.Form):
                #'data-parsley-required': "true",
                #'data-parsley-group': 'group0',
                'rows': '3'}))
+
+
+class BIDIRECTIONAL_REFERRALFORM(forms.Form):
+    REFERRAL_001 = forms.ChoiceField(
+        choices = YESNO_CHOICES,
+        widget = forms.RadioSelect(
+            attrs={
+
+            }))
+
